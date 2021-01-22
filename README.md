@@ -1,5 +1,7 @@
 # Diecast Collector API
 
+Obs: Esse projeto foi criado a partir de um projeto de exemplo criado no [GitHub]((https://github.com/lbbedendo/diecast-collector-api)).
+
 **diecast-collector-api** Is a REST API developed with **Micronaut Framework**. It's goal is to help me keep track of my miniature car collection (Hot Wheels, Maisto, California Collectibles, etc) and to provide a general use case for studying new technologies.
 Also check out the [Web App](https://github.com/lbbedendo/diecast-collector-app) built with React.
 
