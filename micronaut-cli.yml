@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: diecast.collector.api
+---
+testFramework: junit
+sourceLanguage: java
