@@ -1,0 +1,42 @@
+services:
+  - postgres:12.5-alpine
+
+stages:
+  - build
+  - publish
+
+variables:
+  IMAGE_TAG: ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID}
+  POSTGRES_DB: diecast_collector_dev
+  POSTGRES_USER: diecast_collector
+  POSTGRES_PASSWORD: diecast_collector
+  POSTGRES_HOST_AUTH_METHOD: trust
+
+build:
+  stage: build
+  image: gradle:6.1-jdk11
+  script:
+    - ./gradlew --version
+    - ./gradlew build --info
+  artifacts:
+    paths:
+      - build/libs/*.jar
+  only:
+    - master
+    - stage
+
+publish:
+  stage: publish
+  image: docker:19.03
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+    DOCKER_TLS_CERTDIR: ""
+  services:
+    - docker:19.03-dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build --pull -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
+  only:
+    - master
+    - stage
