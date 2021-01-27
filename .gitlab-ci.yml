@@ -1,16 +1,9 @@
-services:
-  - postgres:12.5-alpine
-
 stages:
   - build
   - publish
 
 variables:
   IMAGE_TAG: ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID}
-  POSTGRES_DB: diecast_collector_dev
-  POSTGRES_USER: diecast_collector
-  POSTGRES_PASSWORD: diecast_collector
-  POSTGRES_HOST_AUTH_METHOD: trust
 
 build:
   stage: build
