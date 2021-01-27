@@ -39,10 +39,17 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.11.1")
 }
 
+def conf = "jooq.conf"
+def props = new Properties()
+if (new File(conf).exists()) {
+    props.load(new FileInputStream(conf))
+}
+
+
 flyway {
-    url = 'jdbc:postgresql://localhost:5432/diecast_collector_dev'
-    user = 'diecast_collector'
-    password = 'diecast_collector'
+    url = props.getProperty("db.url")
+    user = props.getProperty("db.username")
+    password = props.getProperty("db.password")
     schemas = ['public']
     locations = ["filesystem:$project.projectDir/src/main/resources/db/migration"]
 }
@@ -53,9 +60,9 @@ jooq {
     diecastCollector(sourceSets.main) {
         jdbc {
             driver = 'org.postgresql.Driver'
-            url = 'jdbc:postgresql://localhost:5432/diecast_collector_dev'
-            user = 'diecast_collector'
-            password = 'diecast_collector'
+            url = props.getProperty("db.url")
+            user = props.getProperty("db.username")
+            password = props.getProperty("db.password")
         }
         generator {
             name = 'org.jooq.codegen.DefaultGenerator'
