@@ -18,8 +18,8 @@ Also check out the [Web App](https://github.com/lbbedendo/diecast-collector-app)
 - docker-compose
 ### Steps
 1. Run `docker-compose up` to setup a postgresql 12.5 instance
-2. The above command will create a new database (diecast_collector_dev) and execute an init script with the DDL necessary for jOOQ to work.
-3. Run `./gradlew build` in the root directory of the repository. During compilation, jOOQ will connect to the database running in the container and generate all necessary classes for the project to compile succesfully.
+2. The above command will create a new database called "diecast_collector_dev".
+3. Run `./gradlew build` in the root directory of the repository. The build script is configured to run all flyway migrations **before** jOOQ schema generation starts. Then, after the migration process is completed, the jOOQ plugin will connect to the database running in the container and generate all necessary classes for the project to compile succesfully.
 4. If you see any error with the message `Failed to initialize pool: Container startup failed` during the test phase, you may need to run `docker run testcontainers/ryuk:0.3.0` and then `./gradlew build` agrain. This seems to be a testcontainers issue.
 5. Finally, run `./gradlew run` to start the application.
 

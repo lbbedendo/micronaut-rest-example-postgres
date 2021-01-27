@@ -9,7 +9,5 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-diecast_collector}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-diecast_collector}
       PGDATA: /data/postgres
-    volumes:
-      - ./src/main/resources/db/migration/V2__ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
     ports:
       - "5432:5432"
