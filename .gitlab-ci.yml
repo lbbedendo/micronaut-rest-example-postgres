@@ -6,6 +6,7 @@ stages:
   - build
   - test
   - publish
+  - deploy
 
 variables:
   IMAGE_TAG: ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID}
