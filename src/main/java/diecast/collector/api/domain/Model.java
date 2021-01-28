@@ -49,7 +49,8 @@ public class Model {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    public Model() {}
+    public Model() {
+    }
 
     public Model(Integer id) {
         this.id = id;

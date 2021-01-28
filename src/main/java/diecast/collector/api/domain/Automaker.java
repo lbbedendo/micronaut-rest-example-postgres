@@ -22,7 +22,9 @@ public class Automaker {
     @Column(name = "country", length = 100)
     private String country;
 
-    public Automaker() {}
+    public Automaker() {
+
+    }
 
     public Automaker(Integer id) {
         this.id = id;

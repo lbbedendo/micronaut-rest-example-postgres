@@ -10,7 +10,8 @@ public class AutomakerSaveRequest {
     private String name;
     private String country;
 
-    public AutomakerSaveRequest() {}
+    public AutomakerSaveRequest() {
+    }
 
     public AutomakerSaveRequest(@NotBlank String name, String country) {
         this.name = name;

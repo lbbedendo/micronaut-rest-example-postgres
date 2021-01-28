@@ -4,6 +4,7 @@ import io.micronaut.runtime.Micronaut;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 
+//CHECKSTYLE:OFF
 @OpenAPIDefinition(
         info = @Info(
                 title = "Micronaut Rest Example PostgreSQL",

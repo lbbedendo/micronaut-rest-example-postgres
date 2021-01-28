@@ -10,7 +10,9 @@ public class CollectionSaveRequest {
     private String name;
     private Integer year;
 
-    public CollectionSaveRequest() {}
+    public CollectionSaveRequest() {
+
+    }
 
     public CollectionSaveRequest(@NotBlank String name, Integer year) {
         this.name = name;

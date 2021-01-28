@@ -7,7 +7,8 @@ public class ModelQuantityByCollectionResponse {
     private String collectionName;
     private Integer quantity;
 
-    public ModelQuantityByCollectionResponse() {}
+    public ModelQuantityByCollectionResponse() {
+    }
 
     public ModelQuantityByCollectionResponse(String collectionName, Integer quantity) {
         this.collectionName = collectionName;

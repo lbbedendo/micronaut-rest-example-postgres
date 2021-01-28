@@ -22,7 +22,9 @@ public class Collection {
     @Column(name = "year")
     private Integer year;
 
-    public Collection() {}
+    public Collection() {
+
+    }
 
     public Collection(Integer id) {
         this.id = id;

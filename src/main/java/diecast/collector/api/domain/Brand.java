@@ -19,7 +19,8 @@ public class Brand {
     @NotNull
     private String name;
 
-    public Brand() {}
+    public Brand() {
+    }
 
     public Brand(Integer id) {
         this.id = id;

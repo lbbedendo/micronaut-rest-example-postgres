@@ -9,7 +9,8 @@ public class BrandSaveRequest {
     @NotBlank
     private String name;
 
-    public BrandSaveRequest() {}
+    public BrandSaveRequest() {
+    }
 
     public BrandSaveRequest(@NotBlank String name) {
         this.name = name;

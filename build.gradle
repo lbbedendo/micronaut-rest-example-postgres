@@ -1,8 +1,9 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("io.micronaut.application") version "1.2.0"
-    id( "nu.studer.jooq") version "3.0.3"
+    id("nu.studer.jooq") version "3.0.3"
     id("org.flywaydb.flyway") version "7.5.2"
+    id("checkstyle")
 }
 
 version = "0.1"
@@ -83,7 +84,7 @@ jooq {
                 fluentSetters = true
             }
             target {
-                packageName = 'diecast.collector.api'
+                packageName = 'diecast.collector.api.jooq'
             }
         }
     }
@@ -113,4 +114,17 @@ tasks.withType(JavaCompile) {
     ])
     options.fork = true
     options.forkOptions.jvmArgs << '-Dmicronaut.openapi.views.spec=rapidoc.enabled=true,swagger-ui.enabled=true,swagger-ui.theme=flattop'
+}
+
+checkstyle {
+    configFile = rootProject.file('checkstyle/checkstyle.xml')
+    checkstyleTest.enabled = false
+}
+
+tasks.withType(Checkstyle) {
+    excludes = ["**/jooq/**/*.java"]
+    reports {
+        html.enabled true
+        html.stylesheet resources.text.fromFile('checkstyle/config/xsl/checkstyle-custom.xsl')
+    }
 }

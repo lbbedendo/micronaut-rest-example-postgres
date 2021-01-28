@@ -8,7 +8,7 @@ import org.jooq.DSLContext;
 
 import java.util.List;
 
-import static diecast.collector.api.tables.Automaker.AUTOMAKER;
+import static diecast.collector.api.jooq.tables.Automaker.AUTOMAKER;
 
 @Repository
 public abstract class AutomakerRepository implements JpaRepository<Automaker, Integer> {

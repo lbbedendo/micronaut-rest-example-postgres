@@ -4,7 +4,7 @@ import io.micronaut.core.annotation.Introspected;
 import org.jooq.Condition;
 import org.jooq.impl.DSL;
 
-import static diecast.collector.api.tables.Automaker.AUTOMAKER;
+import static diecast.collector.api.jooq.tables.Automaker.AUTOMAKER;
 
 @Introspected
 public class AutomakerFilters {

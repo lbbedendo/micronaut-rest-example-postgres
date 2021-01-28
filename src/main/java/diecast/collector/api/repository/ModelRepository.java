@@ -13,9 +13,9 @@ import org.jooq.impl.DSL;
 import java.util.List;
 import java.util.Optional;
 
-import static diecast.collector.api.tables.Automaker.AUTOMAKER;
-import static diecast.collector.api.tables.Collection.COLLECTION;
-import static diecast.collector.api.tables.Model.MODEL;
+import static diecast.collector.api.jooq.tables.Automaker.AUTOMAKER;
+import static diecast.collector.api.jooq.tables.Collection.COLLECTION;
+import static diecast.collector.api.jooq.tables.Model.MODEL;
 
 @Repository
 public abstract class ModelRepository implements JpaRepository<Model, Integer> {

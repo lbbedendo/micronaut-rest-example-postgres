@@ -7,7 +7,9 @@ public class ModelQuantityByAutomakerResponse {
     private String automakerName;
     private Integer quantity;
 
-    public ModelQuantityByAutomakerResponse() {}
+    public ModelQuantityByAutomakerResponse() {
+
+    }
 
     public ModelQuantityByAutomakerResponse(String automakerName, Integer quantity) {
         this.automakerName = automakerName;

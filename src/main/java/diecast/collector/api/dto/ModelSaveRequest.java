@@ -19,7 +19,9 @@ public class ModelSaveRequest {
     private Integer collectionId;
     private Integer brandId;
 
-    public ModelSaveRequest() {}
+    public ModelSaveRequest() {
+
+    }
 
     public ModelSaveRequest(@NotEmpty String name,
                             Integer modelYear,
