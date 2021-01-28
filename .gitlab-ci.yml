@@ -9,7 +9,7 @@ stages:
   - deploy
 
 variables:
-  IMAGE_TAG: ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_ID}
+  IMAGE_TAG: ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}:${CI_PIPELINE_ID}
   POSTGRES_DB: diecast_collector_dev
   POSTGRES_USER: diecast_collector
   POSTGRES_PASSWORD: diecast_collector
