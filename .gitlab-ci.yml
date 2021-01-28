@@ -76,8 +76,7 @@ deploy:
         --install \
         --debug \
         --namespace ${CI_PROJECT_NAME} \
-        --set image.repository=${CI_REGISTRY} \
-        --set image.tag=${IMAGE_TAG}
+        --set image=${IMAGE_TAG}
   only:
     - master
     - stage
