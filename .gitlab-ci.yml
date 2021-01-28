@@ -1,5 +1,6 @@
 services:
   - postgres:12.5-alpine
+  - docker:19.03-dind
 
 stages:
   - build
@@ -12,6 +13,8 @@ variables:
   POSTGRES_USER: diecast_collector
   POSTGRES_PASSWORD: diecast_collector
   POSTGRES_HOST_AUTH_METHOD: trust
+  DOCKER_HOST: tcp://localhost:2375
+  DOCKER_TLS_CERTDIR: ""
 
 build:
   stage: build
@@ -21,7 +24,7 @@ build:
     - ./gradlew assemble --info
   artifacts:
     paths:
-      - build/libs/*.jar
+      - build/*
   only:
     - master
     - stage
@@ -30,11 +33,6 @@ build:
 test:
   stage: test
   image: openjdk:14-alpine
-  variables:
-    DOCKER_HOST: tcp://localhost:2375
-    DOCKER_TLS_CERTDIR: ""
-  services:
-    - docker:19.03-dind
   script:
     - ./gradlew --version
     - ./gradlew test --info
@@ -46,11 +44,6 @@ test:
 publish:
   stage: publish
   image: docker:19.03
-  variables:
-    DOCKER_HOST: tcp://localhost:2375
-    DOCKER_TLS_CERTDIR: ""
-  services:
-    - docker:19.03-dind
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker build --pull -t $IMAGE_TAG .
