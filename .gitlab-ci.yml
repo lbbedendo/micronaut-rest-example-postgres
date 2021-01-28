@@ -25,16 +25,23 @@ build:
   only:
     - master
     - stage
+    - merge_requests
 
 test:
   stage: test
   image: openjdk:14-alpine
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+    DOCKER_TLS_CERTDIR: ""
+  services:
+    - docker:19.03-dind
   script:
     - ./gradlew --version
     - ./gradlew test --info
   only:
     - master
     - stage
+    - merge_requests
 
 publish:
   stage: publish
