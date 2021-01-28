@@ -1,27 +1,31 @@
-# Diecast Collector API
-
-Obs: Esse projeto foi criado a partir de um projeto de exemplo criado no [GitHub]((https://github.com/lbbedendo/diecast-collector-api)).
-
-**diecast-collector-api** Is a REST API developed with **Micronaut Framework**. It's goal is to help me keep track of my miniature car collection (Hot Wheels, Maisto, California Collectibles, etc) and to provide a general use case for studying new technologies.
-Also check out the [Web App](https://github.com/lbbedendo/diecast-collector-app) built with React.
-
-
-## Technology Stack
-- [Micronaut Framework](https://micronaut.io/) with Java
-- PostgreSQL Database
+## Stack
+- [Micronaut Framework](https://micronaut.io/)
+- PostgreSQL
 - Testcontainers
 - Gradle
 
-## Running the application
-### Prerequisites
+## Rodando a aplicação
+### Pré-requisitos
 - docker
 - docker-compose
-### Steps
-1. Run `docker-compose up` to setup a postgresql 12.5 instance
-2. The above command will create a new database called "diecast_collector_dev".
-3. Run `./gradlew build` in the root directory of the repository. The build script is configured to run all flyway migrations **before** jOOQ schema generation starts. Then, after the migration process is completed, the jOOQ plugin will connect to the database running in the container and generate all necessary classes for the project to compile succesfully.
-4. If you see any error with the message `Failed to initialize pool: Container startup failed` during the test phase, you may need to run `docker run testcontainers/ryuk:0.3.0` and then `./gradlew build` agrain. This seems to be a testcontainers issue.
-5. Finally, run `./gradlew run` to start the application.
+### Passos
+1. Execute `docker-compose up` para iniciar uma instância do postgresql 12.5
+2. O comando acima irá criar um banco de dados com o nome "diecast_collector_dev".
+3. Execute `./gradlew build` no diretório raiz do projeto. O script de build está configurado para executar todas as migrações do Flyway **antes** do plugin do jOOQ gerar as classes java baseadas no schema do banco. Finalizado o processo do Flyway, o plugin do jOOQ irá conectar no banco de dados e gerar as classes necessárias para o projeto compilar com sucesso.
+4. Se você encontrar algum erro com a mensagem `Failed to initialize pool: Container startup failed` durante a execução dos testes da aplicação, tente executar o seguinte comando: `docker run testcontainers/ryuk:0.3.0` e depois `./gradlew build` novamente. Esse erro parece ser proveniente da biblioteca Testcontainers.
+5. Execute `./gradlew run` para iniciar a aplicação.
+6. Teste a API executando um POST para `http://localhost:8080/automaker` com o seguinte payload:
+```json
+{
+    "name": "Porsche",
+    "country": "Germany" 
+}
+```
+7. Verifique se o registro foi criado executando um GET para `http://localhost:8080/automaker`
+
+## REST clients para testar a API
+- [Insomnia](https://insomnia.rest/download/)
+- [Postman](https://www.postman.com/)
 
 ## Reference Documentation
 
