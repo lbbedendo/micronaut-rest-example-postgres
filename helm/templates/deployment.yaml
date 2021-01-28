@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.name }}
+  name: {{ .Chart.Name }}
   labels:
-    app: {{ .Chart.name }}
+    app: {{ .Chart.Name }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Chart.name }}
+      app: {{ .Chart.Name }}
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -17,15 +17,15 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ .Chart.name }}
+        app: {{ .Chart.Name }}
     spec:
       imagePullSecrets:
-        - name: gitlab-auth-{{ .Chart.name }}
+        - name: gitlab-auth-{{ .Chart.Name }}
       containers:
-        - name: {{ .Chart.name }}
+        - name: {{ .Chart.Name }}
           envFrom:
             - configMapRef:
-                name: {{ .Chart.name }}-config
+                name: {{ .Chart.Name }}-config
           image: {{ .Values.image.repository }}/{{ .Values.image.tag }}
           imagePullPolicy: Always
           ports:
