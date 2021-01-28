@@ -6,6 +6,15 @@ micronaut:
     io:
       type: fixed
       nThreads: 75
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
+
 endpoints:
   all:
     port: 8081
