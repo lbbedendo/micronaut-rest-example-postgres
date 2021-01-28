@@ -32,7 +32,7 @@ datasources:
 jpa:
   default:
     packages-to-scan:
-      - 'diecast.collector.api.domain'
+      - 'io.platosedu.domain'
     properties:
       hibernate:
         hbm2ddl:

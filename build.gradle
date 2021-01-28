@@ -7,7 +7,7 @@ plugins {
 }
 
 version = "0.1"
-group = "diecast.collector.api"
+group = "io.platosedu"
 
 repositories {
     mavenCentral()
@@ -19,7 +19,7 @@ micronaut {
     testRuntime("junit5")
     processing {
         incremental(true)
-        annotations("diecast.collector.api.*")
+        annotations("io.platosedu.*")
     }
 }
 
@@ -60,7 +60,7 @@ flyway {
 jooq {
     version = '3.11.11'
     edition = 'OSS'
-    diecastCollector(sourceSets.main) {
+    micronautRestExamplePostgres(sourceSets.main) {
         jdbc {
             driver = 'org.postgresql.Driver'
             url = props.getProperty("db.url")
@@ -84,7 +84,7 @@ jooq {
                 fluentSetters = true
             }
             target {
-                packageName = 'diecast.collector.api.jooq'
+                packageName = 'io.platosedu.jooq'
             }
         }
     }
@@ -92,7 +92,7 @@ jooq {
 
 
 application {
-    mainClass.set("diecast.collector.api.Application")
+    mainClass.set("io.platosedu.Application")
 }
 
 java {
@@ -100,7 +100,7 @@ java {
     targetCompatibility = JavaVersion.toVersion("11")
 }
 
-generateDiecastCollectorJooqSchemaSource.dependsOn flywayMigrate
+generateMicronautRestExamplePostgresJooqSchemaSource.dependsOn flywayMigrate
 
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
@@ -108,7 +108,7 @@ tasks.withType(JavaCompile) {
             '-parameters',
             // enables incremental compilation
             '-Amicronaut.processing.incremental=true',
-            '-Amicronaut.processing.annotations=diecast.collector.api.*',
+            '-Amicronaut.processing.annotations=io.platosedu.*',
             "-Amicronaut.processing.group=$project.group",
             "-Amicronaut.processing.module=$project.name",
     ])
