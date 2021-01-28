@@ -1,11 +1,16 @@
 ---
 micronaut:
   application:
-    name: diecast-collector-api
+    name: micronaut-rest-example-postgres
   executors:
     io:
       type: fixed
       nThreads: 75
+endpoints:
+  all:
+    port: 8081
+  health:
+    enabled: true
 ---
 datasources.default: {}
 ---

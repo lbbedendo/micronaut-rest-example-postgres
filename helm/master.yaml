@@ -1,0 +1,7 @@
+replicaCount: 2
+
+service:
+  targetPort: 8080
+
+configMap:
+  micronautEnviroments: prod
