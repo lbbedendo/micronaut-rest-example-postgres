@@ -3,6 +3,7 @@ services:
 
 stages:
   - build
+  - test
   - publish
 
 variables:
@@ -14,13 +15,23 @@ variables:
 
 build:
   stage: build
-  image: gradle:6.1-jdk11
+  image: openjdk:14-alpine
   script:
     - ./gradlew --version
-    - ./gradlew build -x test --info
+    - ./gradlew assemble --info
   artifacts:
     paths:
       - build/libs/*.jar
+  only:
+    - master
+    - stage
+
+test:
+  stage: test
+  image: openjdk:14-alpine
+  script:
+    - ./gradlew --version
+    - ./gradlew test --info
   only:
     - master
     - stage
