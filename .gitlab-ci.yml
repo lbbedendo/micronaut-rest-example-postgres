@@ -17,7 +17,7 @@ build:
   image: gradle:6.1-jdk11
   script:
     - ./gradlew --version
-    - ./gradlew build --info
+    - ./gradlew build -x test --info
   artifacts:
     paths:
       - build/libs/*.jar
