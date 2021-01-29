@@ -6,10 +6,12 @@ import io.platosedu.dto.filters.AutomakerFilters;
 import io.platosedu.repository.AutomakerRepository;
 
 import javax.inject.Singleton;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Singleton
+@Transactional
 public class AutomakerService {
     private final AutomakerRepository automakerRepository;
 
