@@ -62,7 +62,7 @@ public class BrandControllerTest {
     @Test
     public void updateBrand_notFound_whenBrandDoesNotExists() {
         var request = new BrandSaveRequest("Maisto");
-        var response = client.update(999, request);
+        var response = client.update(999L, request);
         assertThat(response.code()).isEqualTo(HttpStatus.NOT_FOUND.getCode());
     }
 
@@ -78,23 +78,23 @@ public class BrandControllerTest {
 
     @Test
     public void delete_notFound_whenBrandDoesNotExists() {
-        var response = client.delete(999);
+        var response = client.delete(999L);
         assertThat(response.code()).isEqualTo(HttpStatus.NOT_FOUND.getCode());
     }
 
     @Test
-    public void getById_ok_whenBrandExists() {
+    public void findById_ok_whenBrandExists() {
         var responseCreated = client.create(new BrandSaveRequest("Hot Wheels"));
         assertThat(responseCreated.code()).isEqualTo(HttpStatus.CREATED.getCode());
         var itemCreated = responseCreated.body();
         assertThat(itemCreated).isNotNull();
-        var responseFound = client.getById(itemCreated.getId());
+        var responseFound = client.findById(itemCreated.getId());
         assertThat(responseFound.code()).isEqualTo(HttpStatus.OK.getCode());
     }
 
     @Test
-    public void getById_notFound_whenBrandDoesNotExists() {
-        var response = client.getById(999);
+    public void findById_notFound_whenBrandDoesNotExists() {
+        var response = client.findById(999L);
         assertThat(response.code()).isEqualTo(HttpStatus.NOT_FOUND.getCode());
     }
 }

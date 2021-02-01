@@ -1,30 +1,31 @@
 package io.platosedu.api;
 
-import io.platosedu.domain.Model;
-import io.platosedu.dto.ModelSaveRequest;
+import io.micronaut.data.model.Page;
+import io.micronaut.data.model.Pageable;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
+import io.platosedu.domain.Model;
+import io.platosedu.dto.ModelSaveRequest;
 
 import javax.validation.Valid;
-import java.util.List;
 
 public interface ModelApi {
     @Get("/{id}")
-    HttpResponse<Model> getById(Integer id);
+    HttpResponse<Model> findById(Long id);
 
     @Get("/")
-    List<Model> getAll();
+    Page<Model> findAll(Pageable pageable);
 
     @Post("/")
     HttpResponse<Model> create(@Valid @Body ModelSaveRequest request);
 
     @Put("/{id}")
-    HttpResponse<Model> update(Integer id, @Valid @Body ModelSaveRequest request);
+    HttpResponse<Model> update(Long id, @Valid @Body ModelSaveRequest request);
 
     @Delete("/{id}")
-    HttpResponse<Model> delete(Integer id);
+    HttpResponse<Model> delete(Long id);
 }

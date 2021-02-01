@@ -1,12 +1,14 @@
 package io.platosedu.repository;
 
-import io.platosedu.domain.Model;
-import io.platosedu.dto.response.ModelQuantityByAutomakerResponse;
-import io.platosedu.dto.response.ModelQuantityByCollectionResponse;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.data.annotation.Join;
 import io.micronaut.data.annotation.Repository;
-import io.micronaut.data.jpa.repository.JpaRepository;
+import io.micronaut.data.jdbc.annotation.JdbcRepository;
+import io.micronaut.data.model.query.builder.sql.Dialect;
+import io.micronaut.data.repository.PageableRepository;
+import io.platosedu.domain.Model;
+import io.platosedu.dto.response.ModelQuantityByAutomakerResponse;
+import io.platosedu.dto.response.ModelQuantityByCollectionResponse;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
 
@@ -18,7 +20,8 @@ import static io.platosedu.jooq.tables.Collection.COLLECTION;
 import static io.platosedu.jooq.tables.Model.MODEL;
 
 @Repository
-public abstract class ModelRepository implements JpaRepository<Model, Integer> {
+@JdbcRepository(dialect = Dialect.POSTGRES)
+public abstract class ModelRepository implements PageableRepository<Model, Long> {
     private final DSLContext dslContext;
 
     public ModelRepository(DSLContext dslContext) {
@@ -37,7 +40,7 @@ public abstract class ModelRepository implements JpaRepository<Model, Integer> {
     @Join(value = "automaker", type = Join.Type.LEFT_FETCH)
     @Join(value = "collection", type = Join.Type.LEFT_FETCH)
     @Join(value = "brand", type = Join.Type.LEFT_FETCH)
-    public abstract Optional<Model> findById(@NonNull Integer id);
+    public abstract Optional<Model> findById(@NonNull Long id);
 
     public List<ModelQuantityByAutomakerResponse> loadModelQuantityByAutomakers() {
         return dslContext

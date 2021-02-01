@@ -1,13 +1,13 @@
 package io.platosedu.controller;
 
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Controller;
 import io.platosedu.api.AutomakerApi;
 import io.platosedu.domain.Automaker;
 import io.platosedu.dto.AutomakerSaveRequest;
 import io.platosedu.dto.filters.AutomakerFilters;
 import io.platosedu.service.AutomakerService;
-import io.micronaut.http.HttpResponse;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Controller;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -23,14 +23,14 @@ public class AutomakerController implements AutomakerApi {
     }
 
     @Override
-    public HttpResponse<Automaker> getById(Integer id) {
-        return automakerService.getById(id)
+    public HttpResponse<Automaker> findById(Long id) {
+        return automakerService.findById(id)
                 .map(HttpResponse::ok)
                 .orElseGet(HttpResponse::notFound);
     }
 
     @Override
-    public List<Automaker> getAll(AutomakerFilters filters) {
+    public List<Automaker> findAll(AutomakerFilters filters) {
         return automakerService.findAll(filters);
     }
 
@@ -42,8 +42,8 @@ public class AutomakerController implements AutomakerApi {
 
     @Override
     @Transactional
-    public HttpResponse<Automaker> update(Integer id, @Body @Valid AutomakerSaveRequest request) {
-        return automakerService.getById(id)
+    public HttpResponse<Automaker> update(Long id, @Body @Valid AutomakerSaveRequest request) {
+        return automakerService.findById(id)
                 .map(automaker -> HttpResponse
                         .ok(automakerService.update(automaker, request))
                         .headers(headers -> headers.location(location(id))))
@@ -52,8 +52,8 @@ public class AutomakerController implements AutomakerApi {
 
     @Override
     @Transactional
-    public HttpResponse<Automaker> delete(Integer id) {
-        return automakerService.getById(id)
+    public HttpResponse<Automaker> delete(Long id) {
+        return automakerService.findById(id)
                 .map(automaker -> {
                     automakerService.delete(automaker);
                     return HttpResponse.ok(automaker);
@@ -61,7 +61,7 @@ public class AutomakerController implements AutomakerApi {
                 .orElseGet(HttpResponse::notFound);
     }
 
-    private URI location(Integer id) {
+    private URI location(Long id) {
         return URI.create("/automaker/" + id);
     }
 }

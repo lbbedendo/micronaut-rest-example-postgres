@@ -83,7 +83,7 @@ public class ModelControllerTest {
         request.setName("Quattro");
         request.setModelYear(1986);
         request.setScale(ModelScale.SCALE_1_64);
-        var response = client.update(999, request);
+        var response = client.update(999L, request);
         assertThat(response.code()).isEqualTo(HttpStatus.NOT_FOUND.getCode());
     }
 
@@ -97,21 +97,21 @@ public class ModelControllerTest {
 
     @Test
     public void delete_notFound_whenModelDoesNotExists() {
-        var response = client.delete(999);
+        var response = client.delete(999L);
         assertThat(response.code()).isEqualTo(HttpStatus.NOT_FOUND.getCode());
     }
 
     @Test
-    public void getById_ok_whenModelExists() {
+    public void findById_ok_whenModelExists() {
         var automaker = createAutomaker("McLaren", "England");
         var model = createModel("Senna", 2019, automaker);
-        var response = client.getById(model.getId());
+        var response = client.findById(model.getId());
         assertThat(response.code()).isEqualTo(HttpStatus.OK.getCode());
     }
 
     @Test
-    public void getById_notFound_whenModelDoesNotExists() {
-        var response = client.getById(999);
+    public void findById_notFound_whenModelDoesNotExists() {
+        var response = client.findById(999L);
         assertThat(response.code()).isEqualTo(HttpStatus.NOT_FOUND.getCode());
     }
 

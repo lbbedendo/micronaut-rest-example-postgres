@@ -1,17 +1,18 @@
 package io.platosedu.controller;
 
+import io.micronaut.data.model.Page;
+import io.micronaut.data.model.Pageable;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Controller;
 import io.platosedu.api.ModelApi;
 import io.platosedu.domain.Model;
 import io.platosedu.dto.ModelSaveRequest;
 import io.platosedu.service.ModelService;
-import io.micronaut.http.HttpResponse;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Controller;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.List;
 
 @Controller("/model")
 public class ModelController implements ModelApi {
@@ -22,15 +23,15 @@ public class ModelController implements ModelApi {
     }
 
     @Override
-    public HttpResponse<Model> getById(Integer id) {
-        return modelService.getById(id)
+    public HttpResponse<Model> findById(Long id) {
+        return modelService.findById(id)
                 .map(HttpResponse::ok)
                 .orElseGet(HttpResponse::notFound);
     }
 
     @Override
-    public List<Model> getAll() {
-        return modelService.getAll();
+    public Page<Model> findAll(Pageable pageable) {
+        return modelService.findAll(pageable);
     }
 
     @Override
@@ -41,16 +42,16 @@ public class ModelController implements ModelApi {
 
     @Override
     @Transactional
-    public HttpResponse<Model> update(Integer id, @Valid @Body ModelSaveRequest request) {
-        return modelService.getById(id)
+    public HttpResponse<Model> update(Long id, @Valid @Body ModelSaveRequest request) {
+        return modelService.findById(id)
                 .map(model -> HttpResponse.ok(modelService.update(model, request)))
                 .orElseGet(HttpResponse::notFound);
     }
 
     @Override
     @Transactional
-    public HttpResponse<Model> delete(Integer id) {
-        return modelService.getById(id)
+    public HttpResponse<Model> delete(Long id) {
+        return modelService.findById(id)
                 .map(model -> {
                     modelService.delete(model);
                     return HttpResponse.ok(model);
@@ -58,7 +59,7 @@ public class ModelController implements ModelApi {
                 .orElseGet(HttpResponse::notFound);
     }
 
-    private URI location(Integer id) {
+    private URI location(Long id) {
         return URI.create("/model/" + id);
     }
 }

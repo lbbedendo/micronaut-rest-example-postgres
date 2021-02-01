@@ -1,17 +1,18 @@
 package io.platosedu.controller;
 
+import io.micronaut.data.model.Page;
+import io.micronaut.data.model.Pageable;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Controller;
 import io.platosedu.api.BrandApi;
 import io.platosedu.domain.Brand;
 import io.platosedu.dto.BrandSaveRequest;
 import io.platosedu.service.BrandService;
-import io.micronaut.http.HttpResponse;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Controller;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.List;
 
 @Controller("/brand")
 public class BrandController implements BrandApi {
@@ -22,15 +23,15 @@ public class BrandController implements BrandApi {
     }
 
     @Override
-    public HttpResponse<Brand> getById(Integer id) {
-        return brandService.getById(id)
+    public HttpResponse<Brand> findById(Long id) {
+        return brandService.findById(id)
                 .map(HttpResponse::ok)
                 .orElseGet(HttpResponse::notFound);
     }
 
     @Override
-    public List<Brand> getAll() {
-        return brandService.getAll();
+    public Page<Brand> findAll(Pageable pageable) {
+        return brandService.findAll(pageable);
     }
 
     @Override
@@ -41,16 +42,16 @@ public class BrandController implements BrandApi {
 
     @Override
     @Transactional
-    public HttpResponse<Brand> update(Integer id, @Body @Valid BrandSaveRequest request) {
-        return brandService.getById(id)
+    public HttpResponse<Brand> update(Long id, @Body @Valid BrandSaveRequest request) {
+        return brandService.findById(id)
                 .map(brand -> HttpResponse.ok(brandService.update(brand, request)).headers(headers -> headers.location(location(id))))
                 .orElseGet(HttpResponse::notFound);
     }
 
     @Override
     @Transactional
-    public HttpResponse<Brand> delete(Integer id) {
-        return brandService.getById(id)
+    public HttpResponse<Brand> delete(Long id) {
+        return brandService.findById(id)
                 .map(brand -> {
                     brandService.delete(brand);
                     return HttpResponse.ok(brand);
@@ -58,7 +59,7 @@ public class BrandController implements BrandApi {
                 .orElseGet(HttpResponse::notFound);
     }
 
-    private URI location(Integer id) {
+    private URI location(Long id) {
         return URI.create("/brand/" + id);
     }
 }

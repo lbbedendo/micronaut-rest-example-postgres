@@ -6,25 +6,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "model")
 public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "name")
-    @NotEmpty
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "model_year")
@@ -37,22 +32,22 @@ public class Model {
     @Column(name = "color_rgba")
     private String colorRgba;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "automaker_id")
     private Automaker automaker;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "collection_id")
     private Collection collection;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
     public Model() {
     }
 
-    public Model(Integer id) {
+    public Model(Long id) {
         this.id = id;
     }
 
@@ -72,11 +67,11 @@ public class Model {
         this.brand = brand;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

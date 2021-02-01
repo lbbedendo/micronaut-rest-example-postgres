@@ -1,10 +1,10 @@
 package io.platosedu.dto;
 
+import io.micronaut.core.annotation.Introspected;
 import io.platosedu.domain.Automaker;
 import io.platosedu.domain.Brand;
 import io.platosedu.domain.Collection;
 import io.platosedu.enums.ModelScale;
-import io.micronaut.core.annotation.Introspected;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -15,9 +15,9 @@ public class ModelSaveRequest {
     private Integer modelYear;
     private ModelScale scale;
     private String colorRgba;
-    private Integer automakerId;
-    private Integer collectionId;
-    private Integer brandId;
+    private Long automakerId;
+    private Long collectionId;
+    private Long brandId;
 
     public ModelSaveRequest() {
 
@@ -27,9 +27,9 @@ public class ModelSaveRequest {
                             Integer modelYear,
                             ModelScale scale,
                             String colorRgba,
-                            Integer automakerId,
-                            Integer collectionId,
-                            Integer brandId) {
+                            Long automakerId,
+                            Long collectionId,
+                            Long brandId) {
         this.name = name;
         this.modelYear = modelYear;
         this.scale = scale;
@@ -71,39 +71,27 @@ public class ModelSaveRequest {
         this.colorRgba = colorRgba;
     }
 
-    public Integer getAutomakerId() {
+    public Long getAutomakerId() {
         return automakerId;
     }
 
-    public void setAutomakerId(Integer automakerId) {
+    public void setAutomakerId(Long automakerId) {
         this.automakerId = automakerId;
     }
 
-    public Automaker getAutomaker() {
-        return automakerId != null ? new Automaker(automakerId) : null;
-    }
-
-    public Integer getCollectionId() {
+    public Long getCollectionId() {
         return collectionId;
     }
 
-    public void setCollectionId(Integer collectionId) {
+    public void setCollectionId(Long collectionId) {
         this.collectionId = collectionId;
     }
 
-    public Collection getCollection() {
-        return collectionId != null ? new Collection(collectionId) : null;
-    }
-
-    public Integer getBrandId() {
+    public Long getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(Integer brandId) {
+    public void setBrandId(Long brandId) {
         this.brandId = brandId;
-    }
-
-    public Brand getBrand() {
-        return brandId != null ? new Brand(brandId) : null;
     }
 }

@@ -1,9 +1,12 @@
 package io.platosedu.repository;
 
-import io.platosedu.domain.Brand;
 import io.micronaut.data.annotation.Repository;
-import io.micronaut.data.jpa.repository.JpaRepository;
+import io.micronaut.data.jdbc.annotation.JdbcRepository;
+import io.micronaut.data.model.query.builder.sql.Dialect;
+import io.micronaut.data.repository.PageableRepository;
+import io.platosedu.domain.Brand;
 
 @Repository
-public interface BrandRepository extends JpaRepository<Brand, Integer> {
+@JdbcRepository(dialect = Dialect.POSTGRES)
+public interface BrandRepository extends PageableRepository<Brand, Long> {
 }

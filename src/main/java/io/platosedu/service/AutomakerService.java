@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Singleton
-@Transactional
 public class AutomakerService {
     private final AutomakerRepository automakerRepository;
 
@@ -19,7 +18,7 @@ public class AutomakerService {
         this.automakerRepository = automakerRepository;
     }
 
-    public Optional<Automaker> getById(Integer id) {
+    public Optional<Automaker> findById(Long id) {
         return automakerRepository.findById(id);
     }
 
@@ -27,6 +26,7 @@ public class AutomakerService {
         return automakerRepository.findAll(filters);
     }
 
+    @Transactional
     public Automaker create(AutomakerSaveRequest request) {
         var automaker = new Automaker();
         automaker.setName(request.getName());
@@ -34,12 +34,14 @@ public class AutomakerService {
         return automakerRepository.save(automaker);
     }
 
+    @Transactional
     public Automaker update(Automaker automaker, AutomakerSaveRequest request) {
         automaker.setName(request.getName());
         automaker.setCountry(request.getCountry());
-        return automakerRepository.save(automaker);
+        return automakerRepository.update(automaker);
     }
 
+    @Transactional
     public void delete(Automaker automaker) {
         automakerRepository.delete(automaker);
     }

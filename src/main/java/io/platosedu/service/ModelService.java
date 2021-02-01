@@ -1,11 +1,16 @@
 package io.platosedu.service;
 
+import io.micronaut.data.model.Page;
+import io.micronaut.data.model.Pageable;
+import io.platosedu.domain.Automaker;
+import io.platosedu.domain.Brand;
+import io.platosedu.domain.Collection;
 import io.platosedu.domain.Model;
 import io.platosedu.dto.ModelSaveRequest;
 import io.platosedu.repository.ModelRepository;
 
 import javax.inject.Singleton;
-import java.util.List;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Singleton
@@ -16,37 +21,46 @@ public class ModelService {
         this.modelRepository = modelRepository;
     }
 
-    public Optional<Model> getById(Integer id) {
+    public Optional<Model> findById(Long id) {
         return modelRepository.findById(id);
     }
 
-    public List<Model> getAll() {
-        return modelRepository.findAll();
+    public Page<Model> findAll(Pageable pageable) {
+        return modelRepository.findAll(pageable);
     }
 
+    @Transactional
     public Model create(ModelSaveRequest request) {
         var model = new Model(
                 request.getName(),
                 request.getModelYear(),
                 request.getScale(),
                 request.getColorRgba(),
-                request.getAutomaker(),
-                request.getCollection(),
-                request.getBrand());
+                new Automaker(request.getAutomakerId()),
+                new Collection(request.getCollectionId()),
+                new Brand(request.getBrandId()));
         return modelRepository.save(model);
     }
 
+    @Transactional
     public Model update(Model model, ModelSaveRequest request) {
         model.setName(request.getName());
         model.setModelYear(request.getModelYear());
         model.setScale(request.getScale());
         model.setColorRgba(request.getColorRgba());
-        model.setAutomaker(request.getAutomaker());
-        model.setCollection(request.getCollection());
-        model.setBrand(request.getBrand());
-        return modelRepository.save(model);
+        model.setAutomaker(request.getAutomakerId() != null
+                ? new Automaker(request.getAutomakerId())
+                : null);
+        model.setCollection(request.getCollectionId() != null
+                ? new Collection(request.getCollectionId())
+                : null);
+        model.setBrand(request.getBrandId() != null
+                ? new Brand(request.getBrandId())
+                : null);
+        return modelRepository.update(model);
     }
 
+    @Transactional
     public void delete(Model model) {
         modelRepository.delete(model);
     }

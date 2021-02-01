@@ -1,17 +1,18 @@
 package io.platosedu.controller;
 
+import io.micronaut.data.model.Page;
+import io.micronaut.data.model.Pageable;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Controller;
 import io.platosedu.api.CollectionApi;
 import io.platosedu.domain.Collection;
 import io.platosedu.dto.CollectionSaveRequest;
 import io.platosedu.service.CollectionService;
-import io.micronaut.http.HttpResponse;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Controller;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.List;
 
 @Controller("/collection")
 public class CollectionController implements CollectionApi {
@@ -22,15 +23,15 @@ public class CollectionController implements CollectionApi {
     }
 
     @Override
-    public HttpResponse<Collection> getById(Integer id) {
-        return collectionService.getById(id)
+    public HttpResponse<Collection> findById(Long id) {
+        return collectionService.findById(id)
                 .map(HttpResponse::ok)
                 .orElseGet(HttpResponse::notFound);
     }
 
     @Override
-    public List<Collection> getAll() {
-        return collectionService.getAll();
+    public Page<Collection> findAll(Pageable pageable) {
+        return collectionService.findAll(pageable);
     }
 
     @Override
@@ -41,8 +42,8 @@ public class CollectionController implements CollectionApi {
 
     @Override
     @Transactional
-    public HttpResponse<Collection> update(Integer id, @Body @Valid CollectionSaveRequest request) {
-        return collectionService.getById(id)
+    public HttpResponse<Collection> update(Long id, @Body @Valid CollectionSaveRequest request) {
+        return collectionService.findById(id)
                 .map(collection -> HttpResponse
                         .ok(collectionService.update(collection, request))
                         .headers(headers -> headers.location(location(collection.getId()))))
@@ -51,8 +52,8 @@ public class CollectionController implements CollectionApi {
 
     @Override
     @Transactional
-    public HttpResponse<Collection> delete(Integer id) {
-        return collectionService.getById(id)
+    public HttpResponse<Collection> delete(Long id) {
+        return collectionService.findById(id)
                 .map(collection -> {
                     collectionService.delete(collection);
                     return HttpResponse.ok(collection);
@@ -60,7 +61,7 @@ public class CollectionController implements CollectionApi {
                 .orElseGet(HttpResponse::notFound);
     }
 
-    private URI location(Integer id) {
+    private URI location(Long id) {
         return URI.create("/collection/" + id);
     }
 }

@@ -6,8 +6,8 @@ import java.util.List;
 
 @Introspected
 public class ModelsDashboardResponse {
-    private List<ModelQuantityByAutomakerResponse> modelsByAutomaker;
-    private List<ModelQuantityByCollectionResponse> modelsByCollection;
+    private final List<ModelQuantityByAutomakerResponse> modelsByAutomaker;
+    private final List<ModelQuantityByCollectionResponse> modelsByCollection;
 
     public ModelsDashboardResponse(List<ModelQuantityByAutomakerResponse> modelsByAutomaker,
                                    List<ModelQuantityByCollectionResponse> modelsByCollection) {

@@ -1,11 +1,11 @@
 package io.platosedu.controller;
 
-import io.platosedu.api.CollectionApi;
-import io.platosedu.domain.Collection;
-import io.platosedu.dto.CollectionSaveRequest;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import io.platosedu.api.CollectionApi;
+import io.platosedu.domain.Collection;
+import io.platosedu.dto.CollectionSaveRequest;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
@@ -64,7 +64,7 @@ public class CollectionControllerTest {
     @Test
     public void updateCollection_notFound_whenCollectionDoesNotExists() {
         var request = new CollectionSaveRequest("Factory Fresh", 2019);
-        var response = client.update(999, request);
+        var response = client.update(999L, request);
         assertThat(response.code()).isEqualTo(HttpStatus.NOT_FOUND.getCode());
     }
 
@@ -77,20 +77,20 @@ public class CollectionControllerTest {
 
     @Test
     public void delete_notFound_whenCollectionDoesNotExists() {
-        var response = client.delete(999);
+        var response = client.delete(999L);
         assertThat(response.code()).isEqualTo(HttpStatus.NOT_FOUND.getCode());
     }
 
     @Test
-    public void getById_ok_whenCollectionExists() {
+    public void findById_ok_whenCollectionExists() {
         var collection = createCollection("Supercars", 2016);
-        var response = client.getById(collection.getId());
+        var response = client.findById(collection.getId());
         assertThat(response.code()).isEqualTo(HttpStatus.OK.getCode());
     }
 
     @Test
-    public void getById_notFound_whenCollectionDoesNotExists() {
-        var response = client.getById(999);
+    public void findById_notFound_whenCollectionDoesNotExists() {
+        var response = client.findById(999L);
         assertThat(response.code()).isEqualTo(HttpStatus.NOT_FOUND.getCode());
     }
 
