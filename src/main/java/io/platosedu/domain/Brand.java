@@ -23,10 +23,6 @@ public class Brand {
         this.id = id;
     }
 
-    public Brand(@NotNull String name) {
-        this.name = name;
-    }
-
     public Long getId() {
         return id;
     }
