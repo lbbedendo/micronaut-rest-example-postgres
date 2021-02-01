@@ -1,8 +1,8 @@
 package io.platosedu.service;
 
-import io.platosedu.dto.response.ModelQuantityByAutomakerResponse;
-import io.platosedu.dto.response.ModelQuantityByCollectionResponse;
-import io.platosedu.dto.response.ModelsDashboardResponse;
+import io.platosedu.api.dto.response.ModelQuantityByAutomakerResponse;
+import io.platosedu.api.dto.response.ModelQuantityByCollectionResponse;
+import io.platosedu.api.dto.response.ModelsDashboardResponse;
 import io.platosedu.repository.ModelRepository;
 
 import javax.inject.Singleton;

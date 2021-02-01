@@ -3,7 +3,7 @@ package io.platosedu.service;
 import io.micronaut.data.model.Page;
 import io.micronaut.data.model.Pageable;
 import io.platosedu.domain.Brand;
-import io.platosedu.dto.BrandSaveRequest;
+import io.platosedu.api.dto.BrandSaveRequest;
 import io.platosedu.repository.BrandRepository;
 
 import javax.inject.Singleton;

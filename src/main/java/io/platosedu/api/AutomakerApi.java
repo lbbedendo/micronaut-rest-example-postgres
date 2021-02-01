@@ -7,8 +7,8 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
 import io.platosedu.domain.Automaker;
-import io.platosedu.dto.AutomakerSaveRequest;
-import io.platosedu.dto.filters.AutomakerFilters;
+import io.platosedu.api.dto.AutomakerSaveRequest;
+import io.platosedu.api.dto.filters.AutomakerFilters;
 
 import javax.validation.Valid;
 import java.util.List;

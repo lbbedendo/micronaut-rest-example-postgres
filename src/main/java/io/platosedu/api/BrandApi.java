@@ -9,7 +9,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
 import io.platosedu.domain.Brand;
-import io.platosedu.dto.BrandSaveRequest;
+import io.platosedu.api.dto.BrandSaveRequest;
 
 import javax.validation.Valid;
 

@@ -5,7 +5,7 @@ import io.micronaut.http.client.annotation.Client;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import io.platosedu.api.CollectionApi;
 import io.platosedu.domain.Collection;
-import io.platosedu.dto.CollectionSaveRequest;
+import io.platosedu.api.dto.CollectionSaveRequest;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;

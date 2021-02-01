@@ -5,8 +5,8 @@ import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.platosedu.api.AutomakerApi;
 import io.platosedu.domain.Automaker;
-import io.platosedu.dto.AutomakerSaveRequest;
-import io.platosedu.dto.filters.AutomakerFilters;
+import io.platosedu.api.dto.AutomakerSaveRequest;
+import io.platosedu.api.dto.filters.AutomakerFilters;
 import io.platosedu.service.AutomakerService;
 
 import javax.transaction.Transactional;

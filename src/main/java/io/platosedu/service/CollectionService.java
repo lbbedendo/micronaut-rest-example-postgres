@@ -3,7 +3,7 @@ package io.platosedu.service;
 import io.micronaut.data.model.Page;
 import io.micronaut.data.model.Pageable;
 import io.platosedu.domain.Collection;
-import io.platosedu.dto.CollectionSaveRequest;
+import io.platosedu.api.dto.CollectionSaveRequest;
 import io.platosedu.repository.CollectionRepository;
 
 import javax.inject.Singleton;

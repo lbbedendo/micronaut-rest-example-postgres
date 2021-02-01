@@ -1,8 +1,8 @@
 package io.platosedu.service;
 
 import io.platosedu.domain.Automaker;
-import io.platosedu.dto.AutomakerSaveRequest;
-import io.platosedu.dto.filters.AutomakerFilters;
+import io.platosedu.api.dto.AutomakerSaveRequest;
+import io.platosedu.api.dto.filters.AutomakerFilters;
 import io.platosedu.repository.AutomakerRepository;
 
 import javax.inject.Singleton;

@@ -1,7 +1,7 @@
 package io.platosedu.controller;
 
 import io.platosedu.api.BrandApi;
-import io.platosedu.dto.BrandSaveRequest;
+import io.platosedu.api.dto.BrandSaveRequest;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;

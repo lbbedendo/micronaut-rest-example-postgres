@@ -9,7 +9,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
 import io.platosedu.domain.Collection;
-import io.platosedu.dto.CollectionSaveRequest;
+import io.platosedu.api.dto.CollectionSaveRequest;
 
 import javax.validation.Valid;
 

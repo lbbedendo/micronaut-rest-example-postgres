@@ -1,4 +1,4 @@
-package io.platosedu.dto;
+package io.platosedu.api.dto;
 
 import io.micronaut.core.annotation.Introspected;
 

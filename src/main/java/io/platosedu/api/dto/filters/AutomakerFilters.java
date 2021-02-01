@@ -1,4 +1,4 @@
-package io.platosedu.dto.filters;
+package io.platosedu.api.dto.filters;
 
 import io.micronaut.core.annotation.Introspected;
 import io.platosedu.jooq.tables.Automaker;

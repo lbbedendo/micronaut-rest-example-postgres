@@ -6,7 +6,7 @@ import io.platosedu.domain.Automaker;
 import io.platosedu.domain.Brand;
 import io.platosedu.domain.Collection;
 import io.platosedu.domain.Model;
-import io.platosedu.dto.ModelSaveRequest;
+import io.platosedu.api.dto.ModelSaveRequest;
 import io.platosedu.repository.ModelRepository;
 
 import javax.inject.Singleton;

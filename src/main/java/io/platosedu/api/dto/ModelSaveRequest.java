@@ -1,9 +1,6 @@
-package io.platosedu.dto;
+package io.platosedu.api.dto;
 
 import io.micronaut.core.annotation.Introspected;
-import io.platosedu.domain.Automaker;
-import io.platosedu.domain.Brand;
-import io.platosedu.domain.Collection;
 import io.platosedu.enums.ModelScale;
 
 import javax.validation.constraints.NotEmpty;

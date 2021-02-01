@@ -7,7 +7,7 @@ import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.platosedu.api.CollectionApi;
 import io.platosedu.domain.Collection;
-import io.platosedu.dto.CollectionSaveRequest;
+import io.platosedu.api.dto.CollectionSaveRequest;
 import io.platosedu.service.CollectionService;
 
 import javax.transaction.Transactional;

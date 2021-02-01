@@ -7,8 +7,8 @@ import io.micronaut.data.jdbc.annotation.JdbcRepository;
 import io.micronaut.data.model.query.builder.sql.Dialect;
 import io.micronaut.data.repository.PageableRepository;
 import io.platosedu.domain.Model;
-import io.platosedu.dto.response.ModelQuantityByAutomakerResponse;
-import io.platosedu.dto.response.ModelQuantityByCollectionResponse;
+import io.platosedu.api.dto.response.ModelQuantityByAutomakerResponse;
+import io.platosedu.api.dto.response.ModelQuantityByCollectionResponse;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
 

@@ -5,7 +5,7 @@ import io.micronaut.data.jdbc.annotation.JdbcRepository;
 import io.micronaut.data.model.query.builder.sql.Dialect;
 import io.micronaut.data.repository.CrudRepository;
 import io.platosedu.domain.Automaker;
-import io.platosedu.dto.filters.AutomakerFilters;
+import io.platosedu.api.dto.filters.AutomakerFilters;
 import org.jooq.DSLContext;
 
 import java.util.List;

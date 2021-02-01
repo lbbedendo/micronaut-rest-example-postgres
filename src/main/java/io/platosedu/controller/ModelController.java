@@ -7,7 +7,7 @@ import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.platosedu.api.ModelApi;
 import io.platosedu.domain.Model;
-import io.platosedu.dto.ModelSaveRequest;
+import io.platosedu.api.dto.ModelSaveRequest;
 import io.platosedu.service.ModelService;
 
 import javax.transaction.Transactional;

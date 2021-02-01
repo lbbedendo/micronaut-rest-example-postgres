@@ -7,7 +7,7 @@ import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.platosedu.api.BrandApi;
 import io.platosedu.domain.Brand;
-import io.platosedu.dto.BrandSaveRequest;
+import io.platosedu.api.dto.BrandSaveRequest;
 import io.platosedu.service.BrandService;
 
 import javax.transaction.Transactional;
