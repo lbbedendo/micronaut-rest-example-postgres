@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Singleton
+@Transactional
 public class CollectionService {
     private final CollectionRepository collectionRepository;
 
@@ -26,7 +27,6 @@ public class CollectionService {
         return collectionRepository.findAll(pageable);
     }
 
-    @Transactional
     public Collection create(CollectionSaveRequest request) {
         var collection = new Collection();
         collection.setName(request.getName());
@@ -34,14 +34,12 @@ public class CollectionService {
         return collectionRepository.save(collection);
     }
 
-    @Transactional
     public Collection update(Collection collection, CollectionSaveRequest request) {
         collection.setName(request.getName());
         collection.setYear(request.getYear());
         return collectionRepository.update(collection);
     }
 
-    @Transactional
     public void delete(Collection collection) {
         collectionRepository.delete(collection);
     }

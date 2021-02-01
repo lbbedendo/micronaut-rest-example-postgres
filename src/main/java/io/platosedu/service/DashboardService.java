@@ -6,9 +6,11 @@ import io.platosedu.dto.response.ModelsDashboardResponse;
 import io.platosedu.repository.ModelRepository;
 
 import javax.inject.Singleton;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Singleton
+@Transactional
 public class DashboardService {
     private final ModelRepository modelRepository;
 

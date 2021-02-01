@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Singleton
+@Transactional
 public class BrandService {
     private final BrandRepository brandRepository;
 
@@ -26,20 +27,17 @@ public class BrandService {
         return brandRepository.findById(id);
     }
 
-    @Transactional
     public Brand create(BrandSaveRequest request) {
         var brand = new Brand();
         brand.setName(request.getName());
         return brandRepository.save(brand);
     }
 
-    @Transactional
     public Brand update(Brand brand, BrandSaveRequest request) {
         brand.setName(request.getName());
         return brandRepository.update(brand);
     }
 
-    @Transactional
     public void delete(Brand brand) {
         brandRepository.delete(brand);
     }

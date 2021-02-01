@@ -14,6 +14,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Singleton
+@Transactional
 public class ModelService {
     private final ModelRepository modelRepository;
 
