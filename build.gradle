@@ -76,6 +76,7 @@ jooq {
             database {
                 name = 'org.jooq.meta.postgres.PostgresDatabase'
                 inputSchema = 'public'
+                excludes = 'flyway_schema_history'
             }
             generate {
                 relations = true
