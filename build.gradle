@@ -4,6 +4,7 @@ plugins {
     id("nu.studer.jooq") version "3.0.3"
     id("org.flywaydb.flyway") version "7.5.2"
     id("checkstyle")
+    id("com.adarshr.test-logger") version "2.1.1"
 }
 
 version = "0.1"
