@@ -36,7 +36,7 @@ test:
   image: openjdk:14-alpine
   script:
     - ./gradlew --version
-    - ./gradlew test --info
+    - ./gradlew check test --info
   only:
     - master
     - stage
